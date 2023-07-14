@@ -104,7 +104,7 @@ class Toolbar extends Template
     public function getToken()
     {
         if (!$this->token) {
-            $this->token = substr(md5(time()),0,8);
+            $this->token = substr(sha1(time()),0,8);
         }
         return $this->token;
     }

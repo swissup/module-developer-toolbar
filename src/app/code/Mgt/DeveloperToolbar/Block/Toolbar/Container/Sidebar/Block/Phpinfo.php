@@ -34,19 +34,20 @@ class Phpinfo extends Block
     {
         ob_start();
         phpinfo();
-        preg_match ('%<style type="text/css">(.*?)</style>.*?(<body>.*</body>)%s', ob_get_clean(), $matches);
-        echo "<div class='mgt-developer-toolbar-phpinfo-display'><style type='text/css'>\n",
-        join("\n",
-            array_map(
-                function($i)
-                {
-                    return ".mgt-developer-toolbar-phpinfo-display " . preg_replace( "/,/", ",.phpinfodisplay ", $i );
+        preg_match('%<style type="text/css">(.*?)</style>.*?(<body>.*</body>)%s', ob_get_clean(), $matches);
+
+        return implode("\n", [
+            "<div class='mgt-developer-toolbar-phpinfo-display'><style type='text/css'>",
+            ...array_map(
+                function ($i) {
+                    return ".mgt-developer-toolbar-phpinfo-display "
+                        . preg_replace("/,/", ",.phpinfodisplay ", $i);
                 },
-                preg_split( '/\n/', $matches[1] )
-            )
-        ),
-        "</style>\n",
-        $matches[2],
-        "\n</div>\n";
+                preg_split('/\n/', $matches[1])
+            ),
+            "</style>",
+            $matches[2],
+            "</div>",
+        ]);
     }
 }
