@@ -24,13 +24,10 @@ namespace Mgt\DeveloperToolbar\Model\Driver\Output;
 use Magento\Framework\Profiler\Driver\Standard\Stat;
 use Magento\Framework\Profiler\Driver\Standard\OutputInterface;
 use Magento\Framework\App\ObjectManager;
+use Mgt\DeveloperToolbar\Helper\Toolbar;
 
 class Zero implements OutputInterface
 {
-    const CACHE_ID_TIMERS_PREFIX = 'MGT_DEVELOPER_TOOLBAR_PROFILE_TIMERS';
-    const CACHE_ID_QUERIES_PREFIX = 'MGT_DEVELOPER_TOOLBAR_QUERIES';
-    const CACHE_TAG = 'MGT_DEVELOPER_TOOLBAR';
-    
     public function display(Stat $stat)
     {
         try {
@@ -47,8 +44,8 @@ class Zero implements OutputInterface
             
                 $timers = $this->getTimers($stat);
             
-                $cacheId = sprintf('%s_%s', self::CACHE_ID_TIMERS_PREFIX, $token);
-                $cache->save(serialize($timers), $cacheId, [self::CACHE_TAG]);
+                $cacheId = sprintf('%s_%s', Toolbar::CACHE_ID_TIMERS_PREFIX, $token);
+                $cache->save(serialize($timers), $cacheId, [Toolbar::CACHE_TAG]);
             
                 $resourceConnection = $objectManager->get('\Magento\Framework\App\ResourceConnection');
                 $readConnection = $resourceConnection->getConnection('read');
@@ -66,8 +63,8 @@ class Zero implements OutputInterface
                     }
                 }
             
-                $cacheId = sprintf('%s_%s', self::CACHE_ID_QUERIES_PREFIX, $token);
-                $cache->save(serialize($queries), $cacheId, [self::CACHE_TAG]);
+                $cacheId = sprintf('%s_%s', Toolbar::CACHE_ID_QUERIES_PREFIX, $token);
+                $cache->save(serialize($queries), $cacheId, [Toolbar::CACHE_TAG]);
             }
             
             $reflectionClass = new \ReflectionClass('\Magento\Framework\Profiler');

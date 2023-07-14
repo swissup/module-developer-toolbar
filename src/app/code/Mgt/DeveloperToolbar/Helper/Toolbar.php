@@ -25,6 +25,7 @@ use Magento\Framework\App\Action\Action;
 
 class Toolbar extends \Magento\Framework\App\Helper\AbstractHelper
 {
+    const CACHE_TAG = 'MGT_DEVELOPER_TOOLBAR';
     const CACHE_ID_PREFIX = 'MGT_DEVELOPER_TOOLBAR_PROFILE';
     const CACHE_ID_TIMERS_PREFIX = 'MGT_DEVELOPER_TOOLBAR_PROFILE_TIMERS';
     const CACHE_ID_QUERIES_PREFIX = 'MGT_DEVELOPER_TOOLBAR_QUERIES';

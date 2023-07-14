@@ -37,12 +37,11 @@ use Magento\Framework\Interception\DefinitionInterface;
 use Magento\Framework\ObjectManager\ConfigInterface as ObjectManagerConfig;
 use Magento\Framework\App\State as AppState;
 
+use Mgt\DeveloperToolbar\Helper\Toolbar;
 use Mgt\DeveloperToolbar\Model\Config;
 
 class DataCollector implements ObserverInterface
 {
-    const CACHE_ID_PREFIX = 'MGT_DEVELOPER_TOOLBAR_PROFILE';
-    const CACHE_TAG = 'MGT_DEVELOPER_TOOLBAR';
     const CONTROLLER_ACTION_NAME = 'execute';
     
     /**
@@ -235,8 +234,8 @@ class DataCollector implements ObserverInterface
 
         $data = $this->data->getData();
 
-        $cacheId = sprintf('%s_%s', self::CACHE_ID_PREFIX, $token);
-        $this->cache->save(serialize($data), $cacheId, [self::CACHE_TAG]);
+        $cacheId = sprintf('%s_%s', Toolbar::CACHE_ID_PREFIX, $token);
+        $this->cache->save(serialize($data), $cacheId, [Toolbar::CACHE_TAG]);
     }
     
     protected function getEvents()
