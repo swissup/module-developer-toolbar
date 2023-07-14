@@ -7,6 +7,14 @@ The toolbar shows you all important information for performance optimisation and
 
 ![Profiler](doc/static_files/profiler_screenshot.png "Profiler")
 
+## Installation
+
+```
+composer require swissup/module-debug-toolbar --dev
+bin/magento module:enable Mgt_DeveloperToolbar
+bin/magento config:set mgt_developer_toolbar/module/is_enabled 1
+```
+
 ## Main Features
 
 * Profiler
@@ -22,7 +30,3 @@ The toolbar shows you all important information for performance optimisation and
 * Plugins
 * Preferences
 * PHP-Info
-
-## Installation
-
-Follow the [Documentation](https://www.mgt-commerce.com/docs/mgt-developer-toolbar/magento2/installation) for detailed installation instructions.
