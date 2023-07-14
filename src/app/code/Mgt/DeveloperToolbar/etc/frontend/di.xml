@@ -3,4 +3,7 @@
     <type name="Magento\Framework\App\Action\AbstractAction">
         <plugin name="mgtDeveloperToolbarToolbarPlugin" type="Mgt\DeveloperToolbar\Model\App\FrontController\ToolbarPlugin"/>
     </type>
+    <type name="Swissup\Breeze\Helper\Data">
+        <plugin name="mgtDeveloperToolbarPlugin" type="Mgt\DeveloperToolbar\Plugin\BreezeHelper"/>
+    </type>
 </config>
