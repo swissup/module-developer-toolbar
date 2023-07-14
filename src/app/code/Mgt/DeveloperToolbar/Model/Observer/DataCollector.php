@@ -235,7 +235,7 @@ class DataCollector implements ObserverInterface
         $data = $this->data->getData();
 
         $cacheId = sprintf('%s_%s', Toolbar::CACHE_ID_PREFIX, $token);
-        $this->cache->save(serialize($data), $cacheId, [Toolbar::CACHE_TAG]);
+        $this->cache->save(json_encode($data), $cacheId, [Toolbar::CACHE_TAG]);
     }
     
     protected function getEvents()

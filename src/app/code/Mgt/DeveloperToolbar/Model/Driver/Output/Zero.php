@@ -45,7 +45,7 @@ class Zero implements OutputInterface
                 $timers = $this->getTimers($stat);
             
                 $cacheId = sprintf('%s_%s', Toolbar::CACHE_ID_TIMERS_PREFIX, $token);
-                $cache->save(serialize($timers), $cacheId, [Toolbar::CACHE_TAG]);
+                $cache->save(json_encode($timers), $cacheId, [Toolbar::CACHE_TAG]);
             
                 $resourceConnection = $objectManager->get('\Magento\Framework\App\ResourceConnection');
                 $readConnection = $resourceConnection->getConnection('read');
@@ -64,7 +64,7 @@ class Zero implements OutputInterface
                 }
             
                 $cacheId = sprintf('%s_%s', Toolbar::CACHE_ID_QUERIES_PREFIX, $token);
-                $cache->save(serialize($queries), $cacheId, [Toolbar::CACHE_TAG]);
+                $cache->save(json_encode($queries), $cacheId, [Toolbar::CACHE_TAG]);
             }
             
             $reflectionClass = new \ReflectionClass('\Magento\Framework\Profiler');

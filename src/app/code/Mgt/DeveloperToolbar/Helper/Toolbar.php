@@ -25,10 +25,10 @@ use Magento\Framework\App\Action\Action;
 
 class Toolbar extends \Magento\Framework\App\Helper\AbstractHelper
 {
-    const CACHE_TAG = 'MGT_DEVELOPER_TOOLBAR';
-    const CACHE_ID_PREFIX = 'MGT_DEVELOPER_TOOLBAR_PROFILE';
-    const CACHE_ID_TIMERS_PREFIX = 'MGT_DEVELOPER_TOOLBAR_PROFILE_TIMERS';
-    const CACHE_ID_QUERIES_PREFIX = 'MGT_DEVELOPER_TOOLBAR_QUERIES';
+    const CACHE_TAG = 'MGT_DEV_TOOLBAR';
+    const CACHE_ID_PREFIX = 'MGT_DEV_TOOLBAR_PROFILE';
+    const CACHE_ID_TIMERS_PREFIX = 'MGT_DEV_TOOLBAR_TIMERS';
+    const CACHE_ID_QUERIES_PREFIX = 'MGT_DEV_TOOLBAR_QUERIES';
     
     /**
      * Design package instance
@@ -144,8 +144,7 @@ class Toolbar extends \Magento\Framework\App\Helper\AbstractHelper
         $queries = $this->cache->load($queriesCacheId);
       
         if ($block) {
-
-            $this->data->addData(unserialize($data));
+            $this->data->addData(json_decode($data, true));
 
             $resultPage = $this->resultPageFactory->create();
             $resultPage->addHandle('mgt_developer_toolbar_view');
@@ -189,14 +188,14 @@ class Toolbar extends \Magento\Framework\App\Helper\AbstractHelper
             $profilerBlock = $layout->getBlock('profiler');
             
             if ($timers) {
-                $timers = unserialize($timers);
+                $timers = json_decode($timers, true);
                 $profilerBlock->setTimers($timers);
             }
             
             $databaseBlock = $layout->getBlock('database');
             
             if ($queries) {
-                $queries = unserialize($queries);
+                $queries = json_decode($queries, true);
                 $databaseBlock->setQueries($queries);
                 $databaseBlock->setTotalNumberOfQueries($this->data->getData('totalNumberOfQueries'));
                 $databaseBlock->setTotalElapsedSecs($this->data->getData('totalElapsedSecs'));
