@@ -344,6 +344,7 @@ table.data-table tbody td {
   padding: 10px;
   margin: 0px;
   white-space: normal;
+  word-break: break-word;
 }
 
 .mgt-developer-toolbar-sidebar-database-queries td {
