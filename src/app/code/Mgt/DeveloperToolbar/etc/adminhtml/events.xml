@@ -6,7 +6,4 @@
     <event name="admin_system_config_changed_section_mgt_developer_toolbar">
         <observer name="mgt_developer_toolbar_enable_disabler_db_profiler" instance="Mgt\DeveloperToolbar\Model\Observer\DbProfiler" />
     </event>
-    <event name="controller_action_predispatch">
-        <observer name="mgt_feed_admin_notification" instance="Mgt\DeveloperToolbar\Model\Observer\PredispatchAdminActionControllerObserver" />
-    </event>
 </config>

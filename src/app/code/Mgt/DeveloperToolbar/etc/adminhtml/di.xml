@@ -3,7 +3,4 @@
     <type name="Magento\Framework\App\Action\AbstractAction">
         <plugin name="mgtDeveloperToolbarToolbarPlugin" type="Mgt\DeveloperToolbar\Model\App\FrontController\ToolbarPlugin"/>
     </type>
-    <type name="Magento\Backend\Model\Menu\Director\Director">
-        <plugin name="mgtDeveloperToolbarToolbarPlugin" type="Mgt\DeveloperToolbar\Model\App\Backend\DirectorPlugin"/>
-    </type>
 </config>
