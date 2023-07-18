@@ -14,6 +14,7 @@
                             <item name="Mgt_DeveloperToolbar/js/blocks" xsi:type="string">Mgt_DeveloperToolbar/js/blocks</item>
                             <item name="Mgt_DeveloperToolbar/js/events" xsi:type="string">Mgt_DeveloperToolbar/js/events</item>
                             <item name="Mgt_DeveloperToolbar/js/plugins" xsi:type="string">Mgt_DeveloperToolbar/js/plugins</item>
+                            <item name="Mgt_DeveloperToolbar/js/treegrid" xsi:type="string">Mgt_DeveloperToolbar/js/breeze/treegrid</item>
                         </item>
                     </item>
                 </argument>
