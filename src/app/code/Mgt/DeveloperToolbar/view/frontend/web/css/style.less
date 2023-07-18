@@ -1,9 +1,51 @@
-.clearfix:after {
-  content: " ";
-  visibility: hidden;
-  display: block;
-  height: 0;
-  clear: both;
+.mgt-developer-toolbar-container {
+  .clearfix:after {
+    content: " ";
+    visibility: hidden;
+    display: block;
+    height: 0;
+    clear: both;
+  }
+
+  table.data-table {
+    background: #ffffff;
+    border: 1px solid #E0E0E0;
+    width: 100%;
+  }
+
+  table.data-table th, table.data-table td {
+    padding: 8px 10px;
+  }
+
+  table.data-table th {
+    font-weight: bold;
+    text-align: left;
+  }
+
+  table.data-table thead th {
+    background-color: #E0E0E0;
+  }
+
+  table.data-table tbody th,
+  table.data-table tbody td {
+    font-size: 15px;
+    border: 1px solid #E0E0E0;
+    border-width: 1px 0;
+  }
+
+  table.data-table tbody td {
+    word-break: break-all;
+  }
+
+  .no-parameters {
+    border: 4px dashed #E0E0E0;
+    color: #999999;
+    padding: 15px;
+  }
+
+  .no-parameters p {
+    padding: 0px 0px 0px 20px;
+  }
 }
 
 .mgtcommerce-logo {
@@ -280,48 +322,6 @@ body.mgtdevelopertoolbar-toolbar-container .container {
   font-size: 12px;
   padding: 5px;
   text-align: center;
-}
-
-.mgt-developer-toolbar-container {
-  table.data-table {
-    background: #ffffff;
-    border: 1px solid #E0E0E0;
-    width: 100%;
-  }
-
-  table.data-table th, table.data-table td {
-    padding: 8px 10px;
-  }
-
-  table.data-table th {
-    font-weight: bold;
-    text-align: left;
-  }
-
-  table.data-table thead th {
-    background-color: #E0E0E0;
-  }
-
-  table.data-table tbody th,
-  table.data-table tbody td {
-    font-size: 15px;
-    border: 1px solid #E0E0E0;
-    border-width: 1px 0;
-  }
-
-  table.data-table tbody td {
-    word-break: break-word;
-  }
-
-  .no-parameters {
-    border: 4px dashed #E0E0E0;
-    color: #999999;
-    padding: 15px;
-  }
-
-  .no-parameters p {
-    padding: 0px 0px 0px 20px;
-  }
 }
 
 .mgt-developer-toolbar-sidebar-profiler-grid {
