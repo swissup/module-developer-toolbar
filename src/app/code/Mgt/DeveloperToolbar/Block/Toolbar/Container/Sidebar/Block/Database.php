@@ -134,4 +134,68 @@ class Database extends Block
         $queries = array_slice($queries, 0, $limit);
         return $queries;
     }
+
+    public function getSimilarQueries()
+    {
+        $similar = [];
+        $queries = $this->getQueries();
+        $limit = count($queries);
+
+        for ($i = 0; $i < $limit; $i++) {
+            if (!isset($queries[$i])) {
+                continue;
+            }
+
+            $len = strlen($queries[$i]['query']);
+            for ($j = $i + 1; $j < $limit; $j++) {
+                if (!isset($queries[$j])) {
+                    continue;
+                }
+
+                if (abs(strlen($queries[$j]['query']) - $len) > 10) {
+                    continue;
+                }
+
+                preg_match('/select .* from \S+/i', $queries[$i]['query'], $sqlStart1);
+                preg_match('/select .* from \S+/i', $queries[$j]['query'], $sqlStart2);
+                if ($sqlStart1 !== $sqlStart2) {
+                    continue;
+                }
+
+                // $distance = levenshtein($queries[$i]['query'], $queries[$j]['query']);
+                // if ($distance > 10) {
+                //     continue;
+                // }
+
+                similar_text($queries[$i]['query'], $queries[$j]['query'], $percent);
+                if ($percent < 95) {
+                    continue;
+                }
+
+                if (!isset($similar[$queries[$i]['query']])) {
+                    $similar[$queries[$i]['query']] = [
+                        'count' => 1,
+                        'time' => $queries[$i]['time'],
+                        'queries' => [$queries[$i]['query']],
+                    ];
+                }
+
+                $similar[$queries[$i]['query']]['count']++;
+                $similar[$queries[$i]['query']]['time'] += $queries[$j]['time'];
+                $similar[$queries[$i]['query']]['queries'][] = $queries[$j]['query'];
+
+                unset($queries[$j]);
+            }
+        }
+
+        $similar = array_filter($similar, function ($group) {
+            return $group['count'] > 3;
+        });
+
+        usort($similar, function ($a, $b) {
+            return $b['count'] <=> $a['count'];
+        });
+
+        return $similar;
+    }
 }

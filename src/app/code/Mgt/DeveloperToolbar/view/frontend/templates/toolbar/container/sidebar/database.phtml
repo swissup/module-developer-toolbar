@@ -118,8 +118,52 @@ $totalElapsedSecs = number_format($this->getTotalElapsedSecs(), 3);
       <?php endforeach ?>
     </tbody>
   </table>
+
+  <?php $similarQueries = $block->getSimilarQueries() ?>
+  <?php if ($similarQueries) : ?>
+    <details class="no-chevron">
+      <summary><h3><?php echo __('Similar Queries'); ?> - <?= count($similarQueries) ?></h3></summary>
+      <table cellspacing="0" cellpadding="0" class="data-table">
+        <thead>
+          <tr>
+            <th width="90%">
+              <?php echo __('Query'); ?>
+            </th>
+            <th width="10%">
+              <?php echo __('Time (ms)'); ?>
+            </th>
+            <th width="10%">
+              <?php echo __('Count'); ?>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php foreach ($similarQueries as $group): ?>
+            <tr>
+              <td>
+                <details class="no-chevron">
+                  <summary><code class="sql"><?= current($group['queries']) ?></code></summary>
+                  <?php foreach ($group['queries'] as $i => $query): ?>
+                    <?php if (!$i): continue; endif; ?>
+                    <hr>
+                    <pre><code class="sql"><?= $query ?></code></pre>
+                  <?php endforeach ?>
+                </details>
+              </td>
+              <td>
+                <?= round($group['time'], 8); ?>
+              </td>
+              <td>
+                <?= $group['count'] ?>
+              </td>
+            </tr>
+          <?php endforeach ?>
+        </tbody>
+      </table>
+    </details>
+  <?php endif ?>
   
-  <h3><?php echo __('All Queries'); ?></h3>
+  <h3><?php echo __('All Queries'); ?> - <?= $totalNumberOfQueries ?></h3>
   
   <table cellspacing="0" cellpadding="0" class="data-table">
     <thead>
@@ -150,7 +194,9 @@ $totalElapsedSecs = number_format($this->getTotalElapsedSecs(), 3);
 </div>
 
 <script>
-  hljs.highlightAll();
+  document.querySelectorAll('code.sql').forEach(el => {
+    hljs.highlightElement(el);
+  });
 </script>
 
 <?php endif ?>
