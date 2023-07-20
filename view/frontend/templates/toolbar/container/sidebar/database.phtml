@@ -161,7 +161,7 @@ $totalElapsedSecs = number_format($this->getTotalElapsedSecs(), 3);
   });
 
   require(['Mgt_DeveloperToolbar/js/clipboard'], function (Clipboard) {
-    var clipboard = new (Clipboard || window.ClipboardJS)('.copy', {
+    var clipboard = new (Clipboard || window.ClipboardJS)(document.querySelectorAll('.copy'), {
       text: function (trigger) {
         return trigger.previousElementSibling.innerText;
       },
