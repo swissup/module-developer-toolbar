@@ -141,14 +141,30 @@ class Database extends Block
         $queries = $this->getQueries();
         $limit = count($queries);
 
+        $ignore = [
+            'begin',
+            'commit',
+            'rollback',
+        ];
+
         for ($i = 0; $i < $limit; $i++) {
             if (!isset($queries[$i])) {
+                continue;
+            }
+
+            if (in_array($queries[$i]['query'], $ignore)) {
+                unset($queries[$i]);
                 continue;
             }
 
             $len = strlen($queries[$i]['query']);
             for ($j = $i + 1; $j < $limit; $j++) {
                 if (!isset($queries[$j])) {
+                    continue;
+                }
+
+                if (in_array($queries[$j]['query'], $ignore)) {
+                    unset($queries[$j]);
                     continue;
                 }
 
