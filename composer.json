@@ -10,9 +10,9 @@
   "version": "1.0.10",
   "license": [ "proprietary" ],
   "autoload": {
-    "files": [ "src/app/code/Mgt/DeveloperToolbar/registration.php" ],
+    "files": [ "registration.php" ],
     "psr-4": {
-      "Mgt\\DeveloperToolbar\\": "src/app/code/Mgt/DeveloperToolbar"
+      "Mgt\\DeveloperToolbar\\": ""
     }
   }
 }
