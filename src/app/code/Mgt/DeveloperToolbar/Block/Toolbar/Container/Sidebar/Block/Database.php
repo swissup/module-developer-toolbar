@@ -129,7 +129,7 @@ class Database extends Block
     {
         $queries = $this->getQueries();
         usort($queries, function($a, $b){
-            return $a['time'] <=> $b['time'];
+            return $b['time'] <=> $a['time'];
         });
         $queries = array_slice($queries, 0, $limit);
         return $queries;
