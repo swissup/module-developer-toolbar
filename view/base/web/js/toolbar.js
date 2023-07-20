@@ -85,19 +85,17 @@ define([
     function init() {
         toggleToolbar(true);
 
-        $('.mgt-developer-toolbar-logo').on("click","img", function (e) {
-            e.preventDefault();
+        $('.mgt-developer-toolbar-logo').on('click', function () {
             toggleToolbar(false);
         });
 
-        $('#mgt-developer-toolbar-blocks .mgt-developer-toolbar-block').on("mouseover", function () {
+        $('#mgt-developer-toolbar-blocks .mgt-developer-toolbar-block').on('mouseover', function () {
             $('.mgt-developer-toolbar-block-information').hide();
-            var toolbarBlockInformation = $('.mgt-developer-toolbar-block-information').get($(this).index());
-            $(toolbarBlockInformation).show();
+            $('.mgt-developer-toolbar-block-information').eq($(this).index()).show();
         });
 
-        $('#mgt-developer-toolbar').on("mouseout", function () {
-            $(".mgt-developer-toolbar-block-information").hide();
+        $('#mgt-developer-toolbar').on('mouseout', function () {
+            $('.mgt-developer-toolbar-block-information').hide();
         });
     }
 
