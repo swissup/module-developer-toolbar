@@ -1,11 +1,10 @@
-MGT Developer Toolbar for Magento 2
-============================
+# MGT Developer Toolbar for Magento 2
 
 The [MGT Developer Toolbar](https://www.mgt-commerce.com/docs/mgt-developer-toolbar/magento2/introduction) is a 
 must-have for Magento 2 developers and frontend guys.
 The toolbar shows you all important information for performance optimisation and Magento development.
 
-![Profiler](doc/static_files/profiler_screenshot.png "Profiler")
+<p align="center"><img alt="Toolbar Screenshot" src="doc/static_files/profiler_screenshot.png" width="773" height="133"/></p>
 
 ## Installation
 
