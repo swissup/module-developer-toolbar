@@ -65,6 +65,45 @@
       }
     }
   }
+
+  code {
+    line-height: 24px;
+  }
+
+  .copy-wrapper {
+    position: relative;
+    button.copy {
+      opacity: 0;
+      padding: 0 !important;
+      margin: 0 !important;
+      border: 0 !important;
+      background: none !important;
+      color: #aaa;
+      cursor: pointer;
+      position: absolute;
+      right: 1px;
+      top: 1px;
+      svg {
+        width: 20px;
+        height: 20px;
+        &:nth-child(2) {
+          display: none;
+        }
+      }
+      &.copied svg {
+        display: none;
+        &:nth-child(2) {
+          display: block;
+        }
+      }
+    }
+    &:hover button.copy {
+      opacity: 1;
+    }
+  }
+  td:hover > .copy-wrapper button.copy {
+    opacity: 1;
+  }
 }
 
 .mgtcommerce-logo {
