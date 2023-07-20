@@ -1,9 +1,5 @@
 # MGT Developer Toolbar for Magento 2
 
-The [MGT Developer Toolbar](https://www.mgt-commerce.com/docs/mgt-developer-toolbar/magento2/introduction) is a 
-must-have for Magento 2 developers and frontend guys.
-The toolbar shows you all important information for performance optimisation and Magento development.
-
 <p align="center"><img alt="Toolbar Screenshot" src="doc/static_files/profiler_screenshot.png" width="773" height="133"/></p>
 
 ## Installation
@@ -29,3 +25,11 @@ bin/magento config:set mgt_developer_toolbar/module/is_enabled 1
 * Plugins
 * Preferences
 * PHP-Info
+
+## Differences with [original repo](https://github.com/mgtcommerce/Mgt_Developertoolbar)
+
+* PHP 8.2 compatible
+* Magento 2.4.6 compatible
+* Improved database page
+* Similar queries feature
+* [Breezefront](https://breezefront.com) compatible
