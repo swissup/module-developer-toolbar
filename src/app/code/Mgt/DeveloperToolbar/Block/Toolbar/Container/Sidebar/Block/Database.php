@@ -168,7 +168,7 @@ class Database extends Block
                 // }
 
                 similar_text($queries[$i]['query'], $queries[$j]['query'], $percent);
-                if ($percent < 95) {
+                if ($percent < 92) {
                     continue;
                 }
 
