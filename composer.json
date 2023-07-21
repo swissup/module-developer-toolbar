@@ -2,13 +2,13 @@
   "name": "swissup/module-debug-toolbar",
   "description": "Mgt Developer Toolbar",
   "keywords": ["magento developer toolbar", "mgt developer toolbar"],
-  "homepage": "https://www.mgt-commerce.com",
+  "homepage": "https://github.com/swissup/module-debug-toolbar",
   "type": "magento2-module",
   "require": {
     "php": ">=7.4.0"
   },
   "version": "1.0.10",
-  "license": [ "proprietary" ],
+  "license": "OSL 3.0",
   "autoload": {
     "files": [ "registration.php" ],
     "psr-4": {
