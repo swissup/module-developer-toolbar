@@ -3,90 +3,39 @@ define([
 ], function ($) {
     'use strict';
 
-    var Cookie = {
-        all: function () {
-            var pairs = document.cookie.split(';'),
-                cookies = {};
-
-            $.each(pairs, function (key, value) {
-                var pair = value.trim().split('=');
-
-                cookies[unescape(pair[0])] = unescape(pair[1]);
-            });
-
-            return cookies;
-        },
-        read: function (cookieName) {
-            var cookies = this.all();
-
-            if (cookies[cookieName]) {
-                return cookies[cookieName];
-            }
-
-            return null;
-        },
-        write: function (cookieName, cookieValue, cookieLifeTime) {
-            var expires = '',
-                urlPath = '/',
-                date = new Date();
-
-            if (cookieLifeTime) {
-                date.setTime(date.getTime() + cookieLifeTime * 1000);
-                expires = '; expires=' + date.toGMTString();
-            }
-
-            document.cookie = escape(cookieName) + '=' + escape(cookieValue) + expires + '; path=' + urlPath;
-        },
-        clear: function (cookieName) {
-            this.write(cookieName, '', -1);
-        }
-    };
-
-    function toggleToolbar(state) {
-        var toolbar = $('#mgt-developer-toolbar'),
+    function toggleToolbar(useState) {
+        var toolbar = $('#mgt-developer-toolbar').show(),
             toolbarBlocksContainer = $('#mgt-developer-toolbar-blocks'),
-            toolbarCookieValue = Cookie.read('mgt-developer-toolbar'),
-            isCollapsible = +$(toolbar).attr('data-collapsible');
+            savedState = window.localStorage.getItem('mgt-developer-toolbar'),
+            isCollapsible = +$(toolbar).attr('data-collapsible'),
+            state = !savedState || savedState === 'false';
 
-        if (isCollapsible) {
-            if (state) {
-                if (!toolbarCookieValue || toolbarCookieValue === 'open') {
-                    Cookie.write('mgt-developer-toolbar', 'open');
-                    toolbar.css('width', '');
-                    toolbarBlocksContainer.show();
-                }
-
-                if (toolbarCookieValue === 'closed') {
-                    Cookie.write('mgt-developer-toolbar', 'closed');
-                    toolbar.css('width', '50px');
-                    toolbarBlocksContainer.hide();
-                }
-            } else {
-                if (toolbarCookieValue === 'open') {
-                    Cookie.write('mgt-developer-toolbar', 'closed');
-                    toolbar.css('width', '50px');
-                    toolbarBlocksContainer.hide();
-                } else {
-                    Cookie.write('mgt-developer-toolbar', 'open');
-                    toolbar.css('width', '');
-                    toolbarBlocksContainer.show();
-                }
-            }
-
-            toolbar.show();
-        } else {
-            Cookie.write('mgt-developer-toolbar', 'open');
-            toolbar.css('width', '');
-            toolbarBlocksContainer.show();
-            toolbar.show();
+        if (!isCollapsible) {
+            state = true;
+        } else if (useState) {
+            state = !savedState || savedState === 'true';
         }
+
+        toolbarBlocksContainer.toggle(state);
+        toolbar.toggleClass('expanded', state);
+        window.localStorage.setItem('mgt-developer-toolbar', state);
     }
 
     function init() {
         toggleToolbar(true);
 
         $('.mgt-developer-toolbar-logo').on('click', function () {
-            toggleToolbar(false);
+            toggleToolbar();
+        });
+
+        $('#mgt-developer-toolbar').on('dblclick', function () {
+            toggleToolbar();
+        });
+
+        $('#mgt-developer-toolbar').on('mousedown', function (event) {
+            if (event.detail > 1) {
+                event.preventDefault(); // prevent text selection
+            }
         });
 
         $('#mgt-developer-toolbar-blocks .mgt-developer-toolbar-block').on('mouseover', function () {

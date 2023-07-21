@@ -105,9 +105,9 @@
   align-items: center;
   position: absolute;
   top: 0;
-  right: 0;
+  left: 0;
   bottom: 0;
-  width: 100%;
+  width: 50px;
   height: 45px;
   margin: 0;
   padding: 0;
@@ -118,6 +118,9 @@
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
   font-size: 13px !important;
   color: #ffffff !important;
+  &.expanded {
+    width: 100%;
+  }
 }
 
 #mgt-developer-toolbar a:hover {
