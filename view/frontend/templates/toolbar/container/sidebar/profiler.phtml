@@ -7,47 +7,51 @@ $sortedTimers = $this->sortTimers($timers);
 ?>
 
 <div class="mgt-developer-toolbar-sidebar-profiler">
-  <h2><?php echo __('Profiler'); ?></h2>
+  <div class="mgt-developer-toolbar-sidebar-heading">
+    <h2><?= __('Profiler'); ?></h2>
+    <label id="significant">
+      <input type="checkbox"/>
+      Significant entries only
+    </label>
+  </div>
   <div class="mgt-developer-toolbar-sidebar-profiler-grid">
     <table id="profiler-grid" cellspacing="0" cellpadding="0" class="data-table data-table-profiler">
       <thead>
         <tr>
-          <th width="70%">
-            <?php echo __('Timer'); ?>
-          </th>
-          <th width="15%">
-            <?php echo __('Time (ms)'); ?>
-          </th>
-          <th width="10%">
-            <?php echo __('AVG (ms)'); ?>
-          </th>
-          <th width="5%">
-            <?php echo __('Count'); ?>
-          </th>
+          <th><?= __('Timer'); ?></th>
+          <th width="100px"><?= __('Time (ms)'); ?></th>
+          <th width="100px"><?= __('AVG (ms)'); ?></th>
+          <th width="60px"><?= __('Count'); ?></th>
         </tr>
       </thead>
       <tbody>
-        <?php if (count($sortedTimers)): ?>
-          <?php foreach ($sortedTimers as $timer): ?>
-            <tr class="treegrid-<?php echo $timer['uid']; ?> <?php echo (isset($timer['parent']) ? sprintf('treegrid-parent-%s', $timer['parent']) : ''); ?>">
-              <td>
-                <?php echo $timer['label']; ?>
-              </td>
-              <td>
-                <?php echo $formatHelper->formatTime($timer['sum']); ?>
-                <?php if (isset($timer['percentage']) && $timer['percentage'] > 1): ?>
-                 <span class="time-percentage" style="width:<?php echo $timer['percentage']; ?>%"></span>
-                <?php endif?>
-              </td>
-              <td>
-                <?php echo $formatHelper->formatTime($timer['avg']); ?>
-              </td>
-              <td>
-                <?php echo $timer['count']; ?>
-              </td>
-            </tr>
-          <?php endforeach ?>
-        <?php endif ?>
+        <?php foreach ($sortedTimers as $timer): ?>
+          <?php
+            $percentage = $timer['percentage'] ?? 0;
+            $significant = 2;
+            $class = ['treegrid-' . $timer['uid']];
+
+            if (isset($timer['parent'])) {
+              $class[] = sprintf('treegrid-parent-%s', $timer['parent']);
+            }
+
+            if ($percentage > $significant) {
+              $class[] = 'significant';
+            }
+          ?>
+
+          <tr class="<?= implode(' ', $class) ?>">
+            <td><?= $timer['label'] ?></td>
+            <td>
+              <?= $formatHelper->formatTime($timer['sum']); ?>
+              <?php if ($percentage > $significant): ?>
+                <span class="time-percentage" style="width:<?= $percentage; ?>%"></span>
+              <?php endif?>
+            </td>
+            <td><?= $formatHelper->formatTime($timer['avg']); ?></td>
+            <td><?= $timer['count']; ?></td>
+          </tr>
+        <?php endforeach ?>
       </tbody>
     </table>
  </div>
@@ -58,6 +62,17 @@ $sortedTimers = $this->sortTimers($timers);
     'jquery',
     'Mgt_DeveloperToolbar/js/treegrid'
   ], function ($) {
+    $('#significant input').on('change', function () {
+      if ($(this).prop('checked')) {
+        $('#profiler-grid tbody tr:not(.significant)').addClass('force-hidden');
+        $('#profiler-grid tbody tr.significant').each(function () {
+          $('#profiler-grid').treegrid('toggleRow', $(this), true);
+        });
+      } else {
+        $('#profiler-grid tbody tr.force-hidden').removeClass('force-hidden');
+      }
+    });
+
     $('#profiler-grid').treegrid({
       'initialState': 'collapsed'
     });
