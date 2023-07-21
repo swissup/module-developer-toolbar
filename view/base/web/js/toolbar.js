@@ -46,7 +46,7 @@ define([
         var toolbar = $('#mgt-developer-toolbar'),
             toolbarBlocksContainer = $('#mgt-developer-toolbar-blocks'),
             toolbarCookieValue = Cookie.read('mgt-developer-toolbar'),
-            isCollapsible = $(toolbar).attr('data-collapsible');
+            isCollapsible = +$(toolbar).attr('data-collapsible');
 
         if (isCollapsible) {
             if (state) {
