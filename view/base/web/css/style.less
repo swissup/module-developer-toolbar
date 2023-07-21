@@ -264,6 +264,7 @@ body.mgtdevelopertoolbar-toolbar-container .container {
   background: #e97900;
   color: #ffffff;
   padding: 20px 10px;
+  word-break: break-word;
 }
 
 .mgt-developer-toolbar-container-summary h2 {
@@ -317,6 +318,17 @@ body.mgtdevelopertoolbar-toolbar-container .container {
 
 .mgt-developer-toolbar-container-sidebar ul li.active a {
   background: #636363;
+}
+
+.mgt-developer-toolbar-sidebar-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
 }
 
 .mgt-developer-toolbar-container-collector-content {
@@ -375,6 +387,7 @@ body.mgtdevelopertoolbar-toolbar-container .container {
 
 .mgt-developer-toolbar-sidebar-profiler-grid table.data-table-profiler tr td {
   position: relative;
+  word-break: break-all;
 }
 
 .mgt-developer-toolbar-sidebar-profiler-grid table.data-table-profiler tr.force-hidden {
