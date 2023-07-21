@@ -17,7 +17,7 @@ define([
         }
 
         toolbarBlocksContainer.toggle(state);
-        toolbar.toggleClass('expanded', state);
+        toolbar.toggleClass('collapsed', !state);
         window.localStorage.setItem('mgt-developer-toolbar', state);
     }
 
