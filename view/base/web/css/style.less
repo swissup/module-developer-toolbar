@@ -1,4 +1,23 @@
-.mgt-developer-toolbar-container {
+.mgtdevelopertoolbar-toolbar-container {
+  min-height: 100vh;
+  margin: 0px !important;
+  padding: 0 !important;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  font-size: 13px !important;
+  background:url(../images/container_bg.png) repeat-y #f9f9f9;
+
+  .page-wrapper {
+    min-height: auto;
+  }
+
+  .modals-wrapper {
+    display: none;
+  }
+
+  #mgt-developer-toolbar {
+    position: relative;
+  }
+
   table.data-table {
     background: #ffffff;
     border: 1px solid #E0E0E0;
@@ -247,14 +266,6 @@
   fill: #e97900;
 }
 
-body.mgtdevelopertoolbar-toolbar-container {
-  margin: 0px !important;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
-  font-size: 13px !important;
-  padding: 45px 0px 0px 0px;
-  background:url(../images/container_bg.png) repeat-y #f9f9f9;
-}
-
 body.mgtdevelopertoolbar-toolbar-container a {
   text-decoration: none;
 }
@@ -299,6 +310,7 @@ body.mgtdevelopertoolbar-toolbar-container .container {
   width: 220px;
   padding: 10px 0px;
   color: #ffffff;
+  background: #323232;
 }
 
 .mgt-developer-toolbar-container-sidebar ul {
