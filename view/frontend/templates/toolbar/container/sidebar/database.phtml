@@ -90,7 +90,7 @@ $totalElapsedSecs = number_format($this->getTotalElapsedSecs(), 3);
           <?php foreach ($similarQueries as $group): ?>
             <tr>
               <td>
-                <details class="no-chevron">
+                <details class="no-chevron line-clamp">
                   <summary>
                     <div class="copy-wrapper">
                       <code class="sql"><?= current($group['queries']) ?></code>
