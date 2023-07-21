@@ -32,4 +32,6 @@ bin/magento config:set mgt_developer_toolbar/module/is_enabled 1
 * Magento 2.4.6 compatible
 * Improved database page
 * Similar queries feature
+* Improved profiler page performance
+* Filter profiler by significant entries
 * [Breezefront](https://breezefront.com) compatible
