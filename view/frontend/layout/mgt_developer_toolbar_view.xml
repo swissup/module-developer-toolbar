@@ -5,7 +5,6 @@
          <remove src="css/styles-m.css" />
          <remove src="css/styles-l.css" />
          <remove src="css/print.css" />
-         <css src="Mgt_DeveloperToolbar::css/style.css"/>
          <css src="Mgt_DeveloperToolbar::css/jquery.treegrid.css"/>
          <css src="Mgt_DeveloperToolbar::css/highlightjs.github.css"/>
          <link src="Mgt_DeveloperToolbar::js/highlight.min.js"/>
