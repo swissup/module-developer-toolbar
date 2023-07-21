@@ -4,7 +4,7 @@
         <css src="Mgt_DeveloperToolbar::css/toolbar.css"/>
     </head>
     <body>
-        <referenceContainer name="before.body.end">
+        <referenceContainer name="after.body.start">
             <block class="Mgt\DeveloperToolbar\Block\Toolbar" name="mgt_developer_toolbar" template="toolbar.phtml">
                 <block class="Magento\Framework\View\Element\Text\ListText" name="mgt_developer_toolbar_blocks">
                      <block class="Mgt\DeveloperToolbar\Block\Toolbar\Block\Info" name="mgt_developer_toolbar_block_info" template="block/info.phtml"/>
