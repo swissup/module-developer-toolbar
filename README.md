@@ -1,6 +1,6 @@
 # MGT Developer Toolbar for Magento 2
 
-<p align="center"><img alt="Toolbar Screenshot" src="doc/static_files/profiler_screenshot.png" width="773" height="133"/></p>
+<p align="center"><img alt="Toolbar Screenshot" src="doc/static_files/profiler_screenshot.png" width="773"/></p>
 
 ## Installation
 
