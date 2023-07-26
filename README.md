@@ -7,7 +7,7 @@
 ```
 composer require swissup/module-debug-toolbar --dev
 bin/magento module:enable Mgt_DeveloperToolbar
-bin/magento config:set mgt_developer_toolbar/module/is_enabled 1
+bin/magento config:set dev/debug/developer_toolbar 1
 ```
 
 ## Main Features

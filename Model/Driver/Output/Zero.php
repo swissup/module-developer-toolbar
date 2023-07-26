@@ -35,10 +35,10 @@ class Zero implements OutputInterface
             
             $registry = $objectManager->get('\Magento\Framework\Registry');
             $config = $objectManager->get('\Mgt\DeveloperToolbar\Model\Config');
-            $isEnabled = $config->isEnabled();
+            $isEnabled = $config->isEnabled() && $config->isAllowed();
             $collect = $registry->registry('mgt_developer_toolbar_collect');
             
-            if (true === $isEnabled && false !== $collect) {
+            if ($isEnabled && $collect) {
                 $cache = $objectManager->get('\Magento\Framework\App\CacheInterface');
                 $token = $registry->registry('mgt_developer_toolbar_token');
             

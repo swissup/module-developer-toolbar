@@ -25,6 +25,7 @@ use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\App\DeploymentConfig\Writer as DeploymentConfigWriter;
 use Magento\Framework\App\DeploymentConfig\Reader as DeploymentConfigReader;
 use Magento\Config\Model\Config\Factory as ConfigFactory;
+use Magento\Developer\Helper\Data as DeveloperHelper;
 
 class Config
 {
@@ -48,35 +49,36 @@ class Config
      */
     protected $configFactory;
 
+    protected DeveloperHelper $developerHelper;
+
     /**
-     * @param ScopeConfigInterface $scopeConfig
      * @param DeploymentConfigWriter $deploymentConfigWriter
      * @param DeploymentConfigReader $deploymentConfigReader
+     * @param ScopeConfigInterface $scopeConfig
      * @param ConfigFactory $configFactory
+     * @param DeveloperHelper $developerHelper
      */
     public function __construct(
         DeploymentConfigWriter $deploymentConfigWriter,
         DeploymentConfigReader $deploymentConfigReader,
         ScopeConfigInterface $scopeConfig,
-        ConfigFactory $configFactory
+        ConfigFactory $configFactory,
+        DeveloperHelper $developerHelper
     ) {
         $this->deploymentConfigWriter = $deploymentConfigWriter;
         $this->deploymentConfigReader = $deploymentConfigReader;
         $this->scopeConfig = $scopeConfig;
         $this->configFactory = $configFactory;
+        $this->developerHelper = $developerHelper;
     }
     
     public function isEnabled()
     {
-        $isEnabled = (bool)$this->scopeConfig->getValue('mgt_developer_toolbar/module/is_enabled');
-        return $isEnabled;
+        return $this->scopeConfig->isSetFlag('dev/debug/developer_toolbar');
     }
     
-    public function getAllowedIps()
+    public function isAllowed()
     {
-        $allowedIps = trim((string)$this->scopeConfig->getValue('mgt_developer_toolbar/module/allowed_ip'));
-        $allowedIps = array_map('trim', explode(',', $allowedIps));
-        $allowedIps = array_filter($allowedIps);
-        return $allowedIps;
+        return $this->developerHelper->isDevAllowed();
     }
 }

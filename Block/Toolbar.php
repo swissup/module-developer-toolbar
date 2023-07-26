@@ -21,6 +21,7 @@
  */
 namespace Mgt\DeveloperToolbar\Block;
 
+use Magento\Developer\Helper\Data as DeveloperHelper;
 use Magento\Framework\View\Element\Template;
 
 class Toolbar extends Template
@@ -39,11 +40,6 @@ class Toolbar extends Template
      * @var String
      */
     protected $token;
-    
-    /**
-     * @var \Magento\Framework\HTTP\PhpEnvironment\RemoteAddress
-     */
-    protected $remoteAddress;
 
     /**
      * @param Context $context
@@ -52,38 +48,12 @@ class Toolbar extends Template
         Context $context
     ) {
         $this->config = $context->getConfig();
-        $this->remoteAddress = $context->getRemoteAddress();
         parent::__construct($context);
-    }
-
-    public function isEnabled()
-    {
-        return $this->config->isEnabled();
-    }
-    
-    public function isAllowedIp()
-    {
-        $allowedIps = $this->config->getAllowedIps();
-        $customerIp = $this->remoteAddress->getRemoteAddress();
-        
-        if (count($allowedIps)) {
-            if ($customerIp && in_array($customerIp, $allowedIps)) {
-                $isAllowedIp = true;
-            } else {
-                $isAllowedIp = false;
-            }
-        } else {
-            $isAllowedIp = true;
-        }
-        
-        return $isAllowedIp;
     }
     
     public function canShow()
     {
-        $isEnabled = $this->isEnabled();
-        $isAllowedIp = $this->isAllowedIp();
-        return $isEnabled && $isAllowedIp;
+        return $this->config->isEnabled() && $this->config->isAllowed();
     }
     
     public function setCollapsible($flag)
