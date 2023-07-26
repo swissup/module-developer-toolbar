@@ -159,7 +159,7 @@ class DataCollector implements ObserverInterface
     {
         $isEnabled = $this->config->isEnabled() && $this->config->isAllowed();
         $collect = $this->registry->registry('mgt_developer_toolbar_collect');
-        if ($isEnabled && $collect) {
+        if ($isEnabled && $collect !== false) {
             $this->collectInformation();
         }
     }
