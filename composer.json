@@ -1,8 +1,8 @@
 {
-  "name": "swissup/module-debug-toolbar",
+  "name": "swissup/module-developer-toolbar",
   "description": "Mgt Developer Toolbar",
   "keywords": ["magento developer toolbar", "mgt developer toolbar"],
-  "homepage": "https://github.com/swissup/module-debug-toolbar",
+  "homepage": "https://github.com/swissup/module-developer-toolbar",
   "type": "magento2-module",
   "require": {
     "php": ">=7.4.0"

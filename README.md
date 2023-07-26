@@ -5,7 +5,7 @@
 ## Installation
 
 ```
-composer require swissup/module-debug-toolbar --dev
+composer require swissup/module-developer-toolbar --dev
 bin/magento module:enable Mgt_DeveloperToolbar
 bin/magento config:set dev/debug/developer_toolbar 1
 ```
