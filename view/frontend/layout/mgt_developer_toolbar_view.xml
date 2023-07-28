@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<page layout="empty" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+<page layout="empty" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <head>
          <remove src="css/style.css" />
          <remove src="css/styles-m.css" />
@@ -32,6 +32,9 @@
         <referenceContainer name="authentication-popup" remove="true"/>
         <referenceContainer name="page.messages" remove="true"/>
         <referenceContainer name="copyright" remove="true"/>
+        <referenceContainer name="navigation.wrapper" remove="true"/>
+        <referenceContainer name="before.body.end" remove="true"/>
+        <referenceContainer name="page.bottom.container" remove="true"/>
         <referenceContainer name="mgt_developer_toolbar">
             <block class="Mgt\DeveloperToolbar\Block\Toolbar\Link\ReturnToSite" name="mgt_developer_toolbar_return_to_site" template="link/return_to_site.phtml"/>
         </referenceContainer>

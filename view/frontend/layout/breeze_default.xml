@@ -5,6 +5,7 @@
         <link src="Mgt_DeveloperToolbar::js/highlight.min.js"/>
     </head>
     <body>
+        <referenceBlock name="breeze.css" remove="true"/>
         <referenceBlock name="breeze.js">
             <arguments>
                 <argument name="bundles" xsi:type="array">
