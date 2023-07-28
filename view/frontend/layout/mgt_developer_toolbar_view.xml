@@ -33,7 +33,6 @@
         <referenceContainer name="page.messages" remove="true"/>
         <referenceContainer name="copyright" remove="true"/>
         <referenceContainer name="navigation.wrapper" remove="true"/>
-        <referenceContainer name="before.body.end" remove="true"/>
         <referenceContainer name="page.bottom.container" remove="true"/>
         <referenceContainer name="mgt_developer_toolbar">
             <block class="Mgt\DeveloperToolbar\Block\Toolbar\Link\ReturnToSite" name="mgt_developer_toolbar_return_to_site" template="link/return_to_site.phtml"/>
