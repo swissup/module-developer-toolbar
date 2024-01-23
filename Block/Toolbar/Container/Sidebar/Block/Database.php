@@ -145,6 +145,8 @@ class Database extends Block
             'begin',
             'commit',
             'rollback',
+            'SELECT GET_LOCK(?, ?);',
+            'SELECT RELEASE_LOCK(?);',
         ];
 
         for ($i = 0; $i < $limit; $i++) {
