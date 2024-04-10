@@ -70,7 +70,7 @@ class Zero implements OutputInterface
             $reflectionClass = new \ReflectionClass('\Magento\Framework\Profiler');
             $reflectionProperty = $reflectionClass->getProperty('_enabled');
             $reflectionProperty->setAccessible(true);
-            $reflectionProperty->setValue(false);
+            $reflectionProperty->setValue($reflectionClass, false);
             
         } catch (\Exception $e) {
         }
