@@ -32,27 +32,27 @@ class Zero implements OutputInterface
     {
         try {
             $objectManager = ObjectManager::getInstance();
-            
+
             $registry = $objectManager->get('\Magento\Framework\Registry');
             $config = $objectManager->get('\Mgt\DeveloperToolbar\Model\Config');
             $isEnabled = $config->isEnabled() && $config->isAllowed();
             $collect = $registry->registry('mgt_developer_toolbar_collect');
-            
+
             if ($isEnabled && $collect !== false) {
                 $cache = $objectManager->get('\Magento\Framework\App\CacheInterface');
                 $token = $registry->registry('mgt_developer_toolbar_token');
-            
+
                 $timers = $this->getTimers($stat);
-            
+
                 $cacheId = sprintf('%s_%s', Toolbar::CACHE_ID_TIMERS_PREFIX, $token);
                 $cache->save(json_encode($timers), $cacheId, [Toolbar::CACHE_TAG]);
-            
+
                 $resourceConnection = $objectManager->get('\Magento\Framework\App\ResourceConnection');
                 $readConnection = $resourceConnection->getConnection('read');
                 $dbProfiler = $readConnection->getProfiler();
                 $queryProfiles = $dbProfiler->getQueryProfiles();
                 $queries = array();
-            
+
                 if ($queryProfiles && count($queryProfiles)) {
                     foreach ($queryProfiles as $queryProfile) {
                         $queries[] = [
@@ -62,16 +62,16 @@ class Zero implements OutputInterface
                         ];
                     }
                 }
-            
+
                 $cacheId = sprintf('%s_%s', Toolbar::CACHE_ID_QUERIES_PREFIX, $token);
                 $cache->save(json_encode($queries), $cacheId, [Toolbar::CACHE_TAG]);
             }
-            
+
             $reflectionClass = new \ReflectionClass('\Magento\Framework\Profiler');
             $reflectionProperty = $reflectionClass->getProperty('_enabled');
             $reflectionProperty->setAccessible(true);
             $reflectionProperty->setValue($reflectionClass, false);
-            
+
         } catch (\Exception $e) {
         }
     }

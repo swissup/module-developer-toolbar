@@ -1,5 +1,6 @@
 define([
-    'jquery'
+    'jquery',
+    'Mgt_DeveloperToolbar/js/toolbar/popup'
 ], function ($) {
     'use strict';
 

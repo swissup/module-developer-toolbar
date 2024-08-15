@@ -4,10 +4,11 @@ $urlBuilder = $this->getUrlBuilder();
 $phpParseTime = $this->getPhpParseTime();
 $token = $this->getToken();
 
+$url = $urlBuilder->getUrl('mgtdevelopertoolbar/toolbar/container/execute', ['block' => 'profiler', 'token' => $token]);
 ?>
 
 <div class="mgt-developer-toolbar-block mgt-developer-toolbar-block-php-parsetime">
-  <a href="<?php echo $urlBuilder->getUrl('mgtdevelopertoolbar/toolbar/container/execute', ['block' => 'profiler', 'token' => $token]); ?>">
+  <a href="<?php echo $url; ?>" class="mgt-toolbar-popup">
     <svg viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" xml:space="preserve">
       <path fill-rule="evenodd" clip-rule="evenodd" d="M17.653,3.93l-0.431,0.425c1.491,1.673,2.404,3.859,2.404,6.257
         c0,5.235-4.318,9.494-9.625,9.494c-5.308,0-9.625-4.259-9.625-9.494c0-4.719,3.512-8.633,8.091-9.361
@@ -20,7 +21,7 @@ $token = $this->getToken();
       </path>
     </svg>
     <span><?php echo $phpParseTime; ?> s</span>
-  </a>  
+  </a>
   <div class="mgt-developer-toolbar-block-information" style="display:none;">
     <ul>
       <li>

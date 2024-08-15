@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 $urlBuilder = $this->getUrlBuilder();
 $controllerModule = $this->getControllerModule();
@@ -7,10 +7,11 @@ $controllerActionName = $this->getControllerActionName();
 $mode = ucfirst($this->getMode());
 $token = $this->getToken();
 
+$url = $urlBuilder->getUrl('mgtdevelopertoolbar/toolbar/container/execute', ['block' => 'dashboard', 'token' => $token]);
 ?>
 
 <div class="mgt-developer-toolbar-block mgt-developer-toolbar-block-info">
-  <a href="<?php echo $urlBuilder->getUrl('mgtdevelopertoolbar/toolbar/container/execute', ['block' => 'dashboard', 'token' => $token]); ?>">
+  <a href="<?php echo $url; ?>">
     <span class="mode"><?php echo $mode; ?></span>
   </a>
   <div class="mgt-developer-toolbar-block-information" style="display:none;">

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 $urlBuilder = $this->getUrlBuilder();
 $profiler = $this->getProfiler();
@@ -6,10 +6,11 @@ $totalElapsedSecs = number_format($this->getTotalElapsedSecs(), 3);
 $totalNumberOfQueries = (int)$this->getTotalNumQueries();
 $token = $this->getToken();
 
+$url = $urlBuilder->getUrl('mgtdevelopertoolbar/toolbar/container/execute', ['block' => 'database', 'token' => $token]);
 ?>
 
 <div class="mgt-developer-toolbar-block mgt-developer-toolbar-block-database-queries">
-  <a href="<?php echo $urlBuilder->getUrl('mgtdevelopertoolbar/toolbar/container/execute', ['block' => 'database', 'token' => $token]); ?>">
+  <a href="<?php echo $url; ?>" class="mgt-toolbar-popup">
     <svg viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" xml:space="preserve">
       <path d="
         M10,0.856c-4.511,0-8.182,1.795-8.182,4.001v10.287c0,2.206,3.67,4.001,8.182,4.001

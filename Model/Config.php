@@ -71,12 +71,12 @@ class Config
         $this->configFactory = $configFactory;
         $this->developerHelper = $developerHelper;
     }
-    
+
     public function isEnabled()
     {
         return $this->scopeConfig->isSetFlag('dev/debug/developer_toolbar');
     }
-    
+
     public function isAllowed()
     {
         return $this->developerHelper->isDevAllowed();

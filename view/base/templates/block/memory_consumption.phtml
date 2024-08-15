@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 $urlBuilder = $this->getUrlBuilder();
 $formatHelper = $this->helper('Mgt\DeveloperToolbar\Helper\Format');
@@ -6,10 +6,11 @@ $memoryConsumption = $this->getMemoryConsumption();
 $phpMemoryLimit = $this->getPhpMemoryLimit();
 $token = $this->getToken();
 
+$url = $urlBuilder->getUrl('mgtdevelopertoolbar/toolbar/container/execute', ['block' => 'profiler', 'token' => $token]);
 ?>
 
 <div class="mgt-developer-toolbar-block mgt-developer-toolbar-block-memory-consumption">
-  <a href="<?php echo $urlBuilder->getUrl('mgtdevelopertoolbar/toolbar/container/execute', ['block' => 'profiler', 'token' => $token]); ?>">
+  <a href="<?php echo $url; ?>">
     <svg viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" xml:space="preserve">
       <path d="
         M14.414,19.879H5.586c-2.602,0-4.719-2.186-4.719-4.874V1.438c0-0.727,0.59-1.317,1.317-1.317h15.633
