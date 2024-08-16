@@ -22,7 +22,9 @@ $url = $urlBuilder->getUrl('mgtdevelopertoolbar/toolbar/container/execute', ['bl
   <div class="mgt-developer-toolbar-block-information" style="display:none;">
     <ul>
       <li>
-         <strong><?php echo __('Magento Version') ?>:</strong> <?php echo $magentoVersion; ?>
+          <a href="<?php echo $url; ?>" class="mgt-toolbar-popup">
+            <strong><?php echo __('Magento Version') ?>:</strong> <?php echo $magentoVersion; ?>
+          </a>
       </li>
     </ul>
   </div>

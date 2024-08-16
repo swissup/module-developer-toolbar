@@ -24,10 +24,14 @@ $url = $urlBuilder->getUrl('mgtdevelopertoolbar/toolbar/container/execute', ['bl
   <div class="mgt-developer-toolbar-block-information" style="display:none;">
     <ul>
       <li>
-         <strong><?php echo __('Memory Consumption') ?>:</strong> <?php echo $formatHelper->formatBytes($memoryConsumption, 2); ?>
+          <a href="<?php echo $url; ?>" class="mgt-toolbar-popup">
+            <strong><?php echo __('Memory Consumption') ?>:</strong> <?php echo $formatHelper->formatBytes($memoryConsumption, 2); ?>
+          </a>
       </li>
       <li>
-         <strong><?php echo __('PHP Memory Limit') ?>:</strong> <?php echo $formatHelper->formatBytes($phpMemoryLimit); ?>
+          <a href="<?php echo $url; ?>" class="mgt-toolbar-popup">
+            <strong><?php echo __('PHP Memory Limit') ?>:</strong> <?php echo $formatHelper->formatBytes($phpMemoryLimit); ?>
+          </a>
       </li>
     </ul>
   </div>

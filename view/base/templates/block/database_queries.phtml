@@ -10,7 +10,7 @@ $url = $urlBuilder->getUrl('mgtdevelopertoolbar/toolbar/container/execute', ['bl
 ?>
 
 <div class="mgt-developer-toolbar-block mgt-developer-toolbar-block-database-queries">
-  <a href="<?php echo $url; ?>" class="mgt-toolbar-popup">
+  <a href="<?php echo $url; ?>">
     <svg viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" xml:space="preserve">
       <path d="
         M10,0.856c-4.511,0-8.182,1.795-8.182,4.001v10.287c0,2.206,3.67,4.001,8.182,4.001
@@ -26,7 +26,9 @@ $url = $urlBuilder->getUrl('mgtdevelopertoolbar/toolbar/container/execute', ['bl
   <div class="mgt-developer-toolbar-block-information" style="display:none;">
     <ul>
       <li>
-         <strong><?php echo __('Database Queries') ?>:</strong> <?php echo $totalNumberOfQueries; ?> in <?php echo $totalElapsedSecs; ?> s
+          <a href="<?php echo $url; ?>" class="mgt-toolbar-popup">
+            <strong><?php echo __('Database Queries') ?>:</strong> <?php echo $totalNumberOfQueries; ?> in <?php echo $totalElapsedSecs; ?> s
+          </a>
       </li>
     </ul>
   </div>
