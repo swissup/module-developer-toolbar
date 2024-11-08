@@ -45,22 +45,15 @@ define([
 
         const iframeDocument = iframe[0].contentDocument;
 
+        content = content.replace(
+            /id="mgt-developer-toolbar" data-collapsible="\d" style=".*?"/,
+            'style="display:none"'
+        );
+
         // do not use "srcdoc" or "src" for working anchor links
         iframeDocument.open();
         iframeDocument.write(content);
         iframeDocument.close();
-
-        setTimeout(function(){
-            $(iframeDocument).find('#mgt-developer-toolbar').hide();
-        }, 1000);
-
-        // const interval = setInterval(() => {
-        //     const toolbar = $(iframeDocument).find('#mgt-developer-toolbar');
-        //     if (toolbar.length > 0) {
-        //         toolbar.hide();
-        //         clearInterval(interval);
-        //     }
-        // }, 200);
     }
 
     $('.mgt-toolbar-popup').off('click').on('click', function (e) {
