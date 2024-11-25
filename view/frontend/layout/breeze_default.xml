@@ -8,10 +8,11 @@
         <referenceBlock name="breeze.js">
             <arguments>
                 <argument name="bundles" xsi:type="array">
-                    <item name="debug" xsi:type="array">
+                    <item name="dynamic" xsi:type="array">
                         <item name="active" xsi:type="boolean">true</item>
                         <item name="items" xsi:type="array">
-                            <item name="mgtdevelopertoolbar" xsi:type="string">Mgt_DeveloperToolbar/js/toolbar</item>
+                            <item name="Mgt_DeveloperToolbar/js/toolbar" xsi:type="string">Mgt_DeveloperToolbar/js/toolbar</item>
+                            <item name="Mgt_DeveloperToolbar/js/toolbar/popup" xsi:type="string">Mgt_DeveloperToolbar/js/toolbar/popup</item>
                             <item name="Mgt_DeveloperToolbar/js/blocks" xsi:type="string">Mgt_DeveloperToolbar/js/blocks</item>
                             <item name="Mgt_DeveloperToolbar/js/events" xsi:type="string">Mgt_DeveloperToolbar/js/events</item>
                             <item name="Mgt_DeveloperToolbar/js/plugins" xsi:type="string">Mgt_DeveloperToolbar/js/plugins</item>
