@@ -7,7 +7,7 @@
   "require": {
     "php": ">=7.4.0"
   },
-  "version": "1.2.5",
+  "version": "1.2.6",
   "license": "OSL-3.0",
   "autoload": {
     "files": [ "registration.php" ],
