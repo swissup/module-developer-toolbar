@@ -35,20 +35,24 @@ define([
     `;
 
     function openModal(content) {
-        var iframe = $('<iframe></iframe>');
+        var iframe = $('<iframe></iframe>'),
+            style = `<style>
+                .mgt-developer-toolbar-return-to-site {
+                    display: none;
+                }
+            </style>`;
 
         iframe.modal({
             modalClass: 'modal-mgt-toolbar-popup',
             autoOpen: true,
             buttons: []
+        }).on('load', function () {
+            $(this).contents().find('head').append(style);
         });
 
         const iframeDocument = iframe[0].contentDocument;
 
-        content = content.replace(
-            /id="mgt-developer-toolbar" data-collapsible="\d" style=".*?"/,
-            'style="display:none"'
-        );
+        content = content.replace('</head>', `${style}</head>`);
 
         // do not use "srcdoc" or "src" for working anchor links
         iframeDocument.open();
@@ -57,6 +61,10 @@ define([
     }
 
     $('.mgt-toolbar-popup').off('click').on('click', function (e) {
+        if (window.self !== window.top || $('body').hasClass('mgtdevelopertoolbar-toolbar-container')) {
+            return;
+        }
+
         e.preventDefault();
         e.stopPropagation();
 
@@ -64,9 +72,7 @@ define([
             url: $(e.currentTarget).attr('href'),
             type: 'GET',
             success: (data) => {
-                // debugger;
                 openModal(data);
-
             }
         });
 
