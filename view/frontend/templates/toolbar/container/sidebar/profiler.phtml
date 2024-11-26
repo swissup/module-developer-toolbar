@@ -14,7 +14,7 @@ $sortedTimers = $this->sortTimers($timers);
       <label id="significant">
         <input id="significant_status" type="checkbox"/>
         Time >=
-        <input id="significant_percent" type="number" min="0" max="100" value="2"/>%
+        <input id="significant_percent" type="number" min="0" max="100"/>%
       </label>
     </div>
   </div>
@@ -67,14 +67,26 @@ $sortedTimers = $this->sortTimers($timers);
     'underscore',
     'Mgt_DeveloperToolbar/js/treegrid'
   ], function ($, _) {
+    var storage = window.localStorage;
+
+    setTimeout(() => {
+      $('#entry_id').val(storage.getItem('dev_toolbar_entry_id') || '').trigger('input');
+      $('#significant_percent').val(storage.getItem('dev_toolbar_significant_percent') || 2);
+      $('#significant_status')
+        .prop('checked', Boolean(Number(storage.getItem('dev_toolbar_significant_status'))))
+        .trigger('input');
+    }, 1);
+
     $('#significant input').on('input', _.debounce(function () {
       if (!$('#significant_percent').val().trim()) {
-        $('#significant_percent').val(2);
+        $('#significant_percent').val(storage.getItem('dev_toolbar_significant_percent') || 2);
+        $('#significant_status').prop('checked', false);
+      } else if ($(this).is($('#significant_percent'))) {
+        $('#significant_status').prop('checked', $('#significant_percent').val() > 0)
+        storage.setItem('dev_toolbar_significant_percent', $('#significant_percent').val());
       }
 
-      if ($(this).is($('#significant_percent'))) {
-        $('#significant_status').prop('checked', $('#significant_percent').val() > 0)
-      }
+      storage.setItem('dev_toolbar_significant_status', +$('#significant_status').prop('checked'));
 
       var value = $('#significant_percent').val().trim();
       if ($('#significant_status').prop('checked')) {
@@ -97,6 +109,7 @@ $sortedTimers = $this->sortTimers($timers);
     $('#entry_id').on('input', _.debounce(function () {
       var value = $(this).val().trim();
 
+      storage.setItem('dev_toolbar_entry_id', value);
       $('#profiler-grid tbody tr').css('background-color', '');
 
       if (value) {
