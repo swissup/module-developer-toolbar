@@ -28,10 +28,13 @@ bin/magento config:set dev/debug/developer_toolbar 1
 
 ## Differences with [original repo](https://github.com/mgtcommerce/Mgt_Developertoolbar)
 
-* PHP 8.2 compatible
-* Magento 2.4.6 compatible
+* PHP 8.4 compatible
+* Magento 2.4.7 compatible
 * Improved database page
-* Similar queries feature
-* Improved profiler page performance
-* Filter profiler by significant entries
+    * Copy query with a mouse click
+    * Similar queries feature helps to find possible n+1 query issues
+* Improved profiler page
+    * Significant performance improvements
+    * Filter entries by time execution
+    * Filter entries by entry label
 * [Breezefront](https://breezefront.com) compatible
