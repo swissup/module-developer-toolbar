@@ -151,11 +151,6 @@ body:has(#mgt-developer-toolbar:not(.collapsed):not([style*="display:none"])) {
   }
 }
 
-#mgt-developer-toolbar a:hover {
-  color: #ffffff;
-  text-decoration: none;
-}
-
 .mgt-developer-toolbar-logo {
   cursor: pointer;
   margin: 3px;
@@ -221,11 +216,15 @@ body:has(#mgt-developer-toolbar:not(.collapsed):not([style*="display:none"])) {
   align-items: center;
 }
 
-.mgt-developer-toolbar-block a:hover {
+.mgt-developer-toolbar-block a:hover,
+:where(.mgt-developer-toolbar-block:has(.mgt-developer-toolbar-block-information[style*="block"])) a {
+  color: #ffffff;
   background: #636363;
+  text-decoration: none;
 }
 
-.mgt-developer-toolbar-block a:hover > svg * {
+.mgt-developer-toolbar-block a:hover > svg,
+.mgt-developer-toolbar-block:has(.mgt-developer-toolbar-block-information[style*="block"]) a > svg {
   fill: #323232;
 }
 
@@ -236,7 +235,7 @@ body:has(#mgt-developer-toolbar:not(.collapsed):not([style*="display:none"])) {
 .mgt-developer-toolbar-block-information {
   background: #636363;
   position: absolute;
-  padding: 10px 50px 10px 10px;
+  padding: 10px;
   top: 100%;
   left: 0px;
   white-space: nowrap;
@@ -252,6 +251,10 @@ body:has(#mgt-developer-toolbar:not(.collapsed):not([style*="display:none"])) {
 .mgt-developer-toolbar-block-information ul li {
   padding: 0px 0px 5px 0px;
   margin: 0px;
+}
+
+.mgt-developer-toolbar-block-information a:hover {
+  background: #555;
 }
 
 .mgt-developer-toolbar-block-info span.mode {
