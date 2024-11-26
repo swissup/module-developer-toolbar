@@ -344,6 +344,21 @@ body.mgtdevelopertoolbar-toolbar-container .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.heading-filters {
+  display: flex;
+  gap: 10px;
+  .filters {
+    display: flex;
+    gap: 10px;
+    margin-left: auto;
+    width: 100%;
+    max-width: 400px;
+    white-space: nowrap;
+    > input {
+      width: 100%;
+    }
+  }
   label {
     display: flex;
     align-items: center;
@@ -410,7 +425,8 @@ body.mgtdevelopertoolbar-toolbar-container .container {
   word-break: break-all;
 }
 
-.mgt-developer-toolbar-sidebar-profiler-grid table.data-table-profiler tr.force-hidden {
+.mgt-developer-toolbar-sidebar-profiler-grid table.data-table-profiler tr.force-hidden-significant,
+.mgt-developer-toolbar-sidebar-profiler-grid table.data-table-profiler tr.force-hidden-id {
   display: none !important;
 }
 

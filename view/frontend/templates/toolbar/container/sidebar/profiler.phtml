@@ -7,12 +7,15 @@ $sortedTimers = $this->sortTimers($timers);
 ?>
 
 <div class="mgt-developer-toolbar-sidebar-profiler">
-  <div class="mgt-developer-toolbar-sidebar-heading">
+  <div class="mgt-developer-toolbar-sidebar-heading heading-filters">
     <h2><?= __('Profiler'); ?></h2>
-    <label id="significant">
-      <input type="checkbox"/>
-      Significant entries only
-    </label>
+    <div class="filters">
+      <input id="entry_id" type="search" placeholder="Search entries..." />
+      <label id="significant">
+        <input type="checkbox"/>
+        Significant entries only
+      </label>
+    </div>
   </div>
   <div class="mgt-developer-toolbar-sidebar-profiler-grid">
     <table id="profiler-grid" cellspacing="0" cellpadding="0" class="data-table data-table-profiler">
@@ -40,7 +43,10 @@ $sortedTimers = $this->sortTimers($timers);
             }
           ?>
 
-          <tr class="<?= implode(' ', $class) ?>">
+          <tr class="<?= implode(' ', $class) ?>"
+              data-id="<?= $timer['uid'] ?>"
+              data-parent="<?= $timer['parent'] ?? '' ?>"
+              data-label="<?= $timer['label'] ?>">
             <td><?= $timer['label'] ?></td>
             <td>
               <?= $formatHelper->formatTime($timer['sum']); ?>
@@ -57,21 +63,51 @@ $sortedTimers = $this->sortTimers($timers);
  </div>
 </div>
 
-<script data-breeze>
+<script>
   require([
     'jquery',
+    'underscore',
     'Mgt_DeveloperToolbar/js/treegrid'
-  ], function ($) {
+  ], function ($, _) {
     $('#significant input').on('change', function () {
       if ($(this).prop('checked')) {
-        $('#profiler-grid tbody tr:not(.significant)').addClass('force-hidden');
+        $('#profiler-grid tbody tr:not(.significant)').addClass('force-hidden-significant');
         $('#profiler-grid tbody tr.significant').each(function () {
           $('#profiler-grid').treegrid('toggleRow', $(this), true);
         });
       } else {
-        $('#profiler-grid tbody tr.force-hidden').removeClass('force-hidden');
+        $('#profiler-grid tbody tr.force-hidden-significant').removeClass('force-hidden-significant');
       }
     });
+
+    $('#entry_id').on('input', _.debounce(function () {
+      var value = $(this).val().trim();
+
+      $('#profiler-grid tbody tr').css('background-color', '');
+
+      if (value) {
+        $(`#profiler-grid tbody tr:not([data-label*="${value}" i])`).addClass('force-hidden-id');
+        $(`#profiler-grid tbody tr[data-label*="${value}" i]`)
+          .removeClass('force-hidden-id')
+          .css('background-color', '#feffdd');
+
+        var i = 10;
+        while (i--) {
+          var parentIds = [... new Set(
+            $('#profiler-grid tbody tr:not(.force-hidden-id)')
+              .map((i, el) => `[data-id="${$(el).data('parent')}"]`)
+          )];
+
+          $(parentIds.join(',')).removeClass('force-hidden-id');
+        }
+
+        $('#profiler-grid tbody tr:not(.force-hidden-id)').each(function () {
+          $('#profiler-grid').treegrid('toggleRow', $(this), true);
+        });
+      } else {
+        $('#profiler-grid tbody tr.force-hidden-id').removeClass('force-hidden-id');
+      }
+    }, 300));
 
     $('#profiler-grid').treegrid({
       'initialState': 'collapsed'
