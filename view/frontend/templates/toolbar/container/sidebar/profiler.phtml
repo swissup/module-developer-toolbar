@@ -12,8 +12,9 @@ $sortedTimers = $this->sortTimers($timers);
     <div class="filters">
       <input id="entry_id" type="search" placeholder="Search entries..." />
       <label id="significant">
-        <input type="checkbox"/>
-        Significant entries only
+        <input id="significant_status" type="checkbox"/>
+        Time >=
+        <input id="significant_percent" type="number" min="0" max="100" value="2"/>%
       </label>
     </div>
   </div>
@@ -37,15 +38,12 @@ $sortedTimers = $this->sortTimers($timers);
             if (isset($timer['parent'])) {
               $class[] = sprintf('treegrid-parent-%s', $timer['parent']);
             }
-
-            if ($percentage > $significant) {
-              $class[] = 'significant';
-            }
           ?>
 
           <tr class="<?= implode(' ', $class) ?>"
               data-id="<?= $timer['uid'] ?>"
               data-parent="<?= $timer['parent'] ?? '' ?>"
+              data-percent="<?= $timer['percentage'] ?? '' ?>"
               data-label="<?= $timer['label'] ?>">
             <td><?= $timer['label'] ?></td>
             <td>
@@ -69,16 +67,32 @@ $sortedTimers = $this->sortTimers($timers);
     'underscore',
     'Mgt_DeveloperToolbar/js/treegrid'
   ], function ($, _) {
-    $('#significant input').on('change', function () {
-      if ($(this).prop('checked')) {
-        $('#profiler-grid tbody tr:not(.significant)').addClass('force-hidden-significant');
-        $('#profiler-grid tbody tr.significant').each(function () {
-          $('#profiler-grid').treegrid('toggleRow', $(this), true);
-        });
-      } else {
-        $('#profiler-grid tbody tr.force-hidden-significant').removeClass('force-hidden-significant');
+    $('#significant input').on('input', _.debounce(function () {
+      if (!$('#significant_percent').val().trim()) {
+        $('#significant_percent').val(2);
       }
-    });
+
+      if ($(this).is($('#significant_percent'))) {
+        $('#significant_status').prop('checked', $('#significant_percent').val() > 0)
+      }
+
+      var value = $('#significant_percent').val().trim();
+      if ($('#significant_status').prop('checked')) {
+        $('#profiler-grid tbody tr')
+          .filter((i, el) => $(el).data('percent') < value)
+          .addClass('force-hidden-significant');
+
+        $('#profiler-grid tbody tr')
+          .filter((i, el) => $(el).data('percent') >= value)
+          .removeClass('force-hidden-significant')
+          .each(function () {
+            $('#profiler-grid').treegrid('toggleRow', $(this), true);
+          });
+      } else {
+        $('#profiler-grid tbody tr.force-hidden-significant')
+          .removeClass('force-hidden-significant');
+      }
+    }, 150));
 
     $('#entry_id').on('input', _.debounce(function () {
       var value = $(this).val().trim();
