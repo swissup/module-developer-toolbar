@@ -4,6 +4,7 @@
         <css src="Mgt_DeveloperToolbar::css/style.css"/>
     </head>
     <body>
+        <attribute name="class" value="has-mgt-developer-toolbar"/>
         <referenceContainer name="before.body.end">
             <block class="Mgt\DeveloperToolbar\Block\Toolbar" name="mgt_developer_toolbar" template="toolbar.phtml">
                 <block class="Magento\Framework\View\Element\Text\ListText" name="mgt_developer_toolbar_blocks">

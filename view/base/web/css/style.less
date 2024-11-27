@@ -1,8 +1,11 @@
-body:has(#mgt-developer-toolbar:not(.collapsed):not([style*="display:none"])) {
-  padding-top: 44px;
-  .stage-full-screen {
-    padding-top: 44px;
+body:has(> #mgt-developer-toolbar) {
+  #mgt-developer-toolbar {
+    z-index: 700; // backend only: move behind pagebuilder
   }
+}
+
+.has-mgt-developer-toolbar:not([class*="admin"]) .page-wrapper {
+  padding-top: 44px;
 }
 
 .mgtdevelopertoolbar-toolbar-container {
@@ -23,10 +26,6 @@ body:has(#mgt-developer-toolbar:not(.collapsed):not([style*="display:none"])) {
 
   .modals-wrapper {
     display: none;
-  }
-
-  #mgt-developer-toolbar {
-    position: relative;
   }
 
   table.data-table {
