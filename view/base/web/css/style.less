@@ -217,14 +217,14 @@ body:has(#mgt-developer-toolbar:not(.collapsed):not([style*="display:none"])) {
 }
 
 .mgt-developer-toolbar-block a:hover,
-:where(.mgt-developer-toolbar-block:has(.mgt-developer-toolbar-block-information[style*="block"])) a {
+:where(.mgt-developer-toolbar-block:has(.mgt-developer-toolbar-block-information:not([style*="none"]))) a {
   color: #ffffff;
   background: #636363;
   text-decoration: none;
 }
 
 .mgt-developer-toolbar-block a:hover > svg,
-.mgt-developer-toolbar-block:has(.mgt-developer-toolbar-block-information[style*="block"]) a > svg {
+.mgt-developer-toolbar-block:has(.mgt-developer-toolbar-block-information:not([style*="none"])) a > svg {
   fill: #323232;
 }
 
