@@ -4,14 +4,10 @@ body:has(> #mgt-developer-toolbar) {
   }
 }
 
-.has-mgt-developer-toolbar:not([class*="admin"]) .page-wrapper {
-  padding-top: 44px;
-}
-
 .mgtdevelopertoolbar-toolbar-container {
   min-height: 100vh;
   margin: 0px !important;
-  padding: 0 !important;
+  padding: 40px 0 0 !important;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
   font-size: 13px !important;
   background:url(../images/container_bg.png) repeat-y #f9f9f9;
@@ -22,6 +18,17 @@ body:has(> #mgt-developer-toolbar) {
 
   .column.main {
     padding: 0;
+  }
+
+  #mgt-developer-toolbar {
+    position: absolute;
+    top: 0;
+    bottom: auto;
+    border-top: 0;
+  }
+  .mgt-developer-toolbar-block-information {
+    bottom: auto;
+    top: 100%;
   }
 
   .modals-wrapper {
@@ -132,8 +139,8 @@ body:has(> #mgt-developer-toolbar) {
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
-  position: absolute;
-  top: 0;
+  position: fixed;
+  bottom: 0;
   left: 0;
   width: 100%;
   margin: 0;
@@ -141,7 +148,7 @@ body:has(> #mgt-developer-toolbar) {
   z-index: 9998;
   text-align: left;
   background-color: #323232;
-  border-bottom: 4px solid #e97900;
+  border-top: 3px solid #e97900;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
   font-size: 13px !important;
   color: #ffffff !important;
@@ -235,7 +242,7 @@ body:has(> #mgt-developer-toolbar) {
   background: #636363;
   position: absolute;
   padding: 10px;
-  top: 100%;
+  bottom: 100%;
   left: 0px;
   white-space: nowrap;
   z-index: 10;
@@ -296,7 +303,7 @@ body.mgtdevelopertoolbar-toolbar-container .container {
 }
 
 .mgt-developer-toolbar-container-summary h2 {
-  font-weight: 30px;
+  font-size: 30px;
   margin: 0px;
   padding: 0px 0px 15px 0px;
 }
@@ -320,6 +327,8 @@ body.mgtdevelopertoolbar-toolbar-container .container {
 }
 
 .mgt-developer-toolbar-container-sidebar {
+  position: sticky;
+  top: 0;
   float:left;
   width: 220px;
   padding: 10px 0px;
