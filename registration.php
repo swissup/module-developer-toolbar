@@ -23,6 +23,18 @@ if (PHP_SAPI != 'cli') {
     __DIR__
 );
 
+if (!function_exists('dumpDie')) {
+    function dumpDie(...$argc)
+    {
+        echo '<pre>';
+        echo '<code>';
+        var_dump(...$argc);
+        echo '</code>';
+        echo '</pre>';
+
+    }
+}
+
 if (!function_exists('consoleLog')) {
     function consoleLog(...$argc)
     {
@@ -30,7 +42,13 @@ if (!function_exists('consoleLog')) {
         if (!is_array($out)) {
             $out = [$out];
         }
-        array_unshift($out, __FILE__ . ' :: ' . __LINE__);
+//        array_unshift($out, __FILE__ . ' :: ' . __LINE__);
+        $backtrace = Spatie\Backtrace\Backtrace::create()
+            ->withArguments()
+            ->limit(2);
+        $trace = $backtrace->frames();
+        $out[] = $trace[1]->file . ' :: ' . $trace[1]->lineNumber;
+
         // $out = array_map(function($val){return sprintf("'%s'", $val);}, $out);
         // $out = http_build_query($out,'',', ');
         // $out = '"' . json_encode($out) . '"';
