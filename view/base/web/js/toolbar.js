@@ -17,9 +17,11 @@ define([
             state = !savedState || savedState === 'true';
         }
 
-        toolbarBlocksContainer.toggle(state);
-        toolbar.toggleClass('collapsed', !state);
         window.localStorage.setItem('mgt-developer-toolbar', state);
+        requestAnimationFrame(() => {
+            toolbarBlocksContainer.toggle(state);
+            toolbar.toggleClass('collapsed', !state);
+        });
     }
 
     function init() {
@@ -29,7 +31,10 @@ define([
             toggleToolbar();
         });
 
-        $('#mgt-developer-toolbar').on('dblclick', function () {
+        $('#mgt-developer-toolbar').on('dblclick', function (e) {
+            if ($(e.target).closest('.mgt-developer-toolbar-logo').length) {
+                return;
+            }
             toggleToolbar();
         });
 
