@@ -29,7 +29,10 @@ define([
             toggleToolbar();
         });
 
-        $('#mgt-developer-toolbar').on('dblclick', function () {
+        $('#mgt-developer-toolbar').on('dblclick', function (e) {
+            if ($(e.target).closest('.mgt-developer-toolbar-logo').length) {
+                return;
+            }
             toggleToolbar();
         });
 
