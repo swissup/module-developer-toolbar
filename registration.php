@@ -26,11 +26,9 @@ if (PHP_SAPI != 'cli') {
 if (!function_exists('dumpDie')) {
     function dumpDie(...$argc)
     {
-        echo '<pre>';
-        echo '<code>';
+        print_r('<pre><code>');
         var_dump(...$argc);
-        echo '</code>';
-        echo '</pre>';
+        print_r('</code></pre>');
 
     }
 }
@@ -43,7 +41,7 @@ if (!function_exists('consoleLog')) {
             $out = [$out];
         }
 //        array_unshift($out, __FILE__ . ' :: ' . __LINE__);
-        $backtrace = Spatie\Backtrace\Backtrace::create()
+        $backtrace = \Spatie\Backtrace\Backtrace::create() // @phpstan-ignore-line
             ->withArguments()
             ->limit(2);
         $trace = $backtrace->frames();
@@ -54,7 +52,7 @@ if (!function_exists('consoleLog')) {
         // $out = '"' . json_encode($out) . '"';
         $jsonOptions = JSON_PARTIAL_OUTPUT_ON_ERROR | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT;
         $out = json_encode($out, $jsonOptions);
-        echo '<script>console.log(' . $out . ');</script>';
+        print_r('<script>console.log(' . $out . ');</script>');
     }
 }
 
@@ -62,7 +60,7 @@ if (!function_exists('consoleTrace')) {
     function consoleTrace($limit = 20)
     {
         $applicationPath = BP;
-        $backtrace = Spatie\Backtrace\Backtrace::create()
+        $backtrace = \Spatie\Backtrace\Backtrace::create() // @phpstan-ignore-line
             ->withArguments()
 //            ->reduceArguments()
             ->applicationPath($applicationPath ?? '')
@@ -102,6 +100,6 @@ if (!function_exists('consoleTrace')) {
 
         $jsonOptions = JSON_PARTIAL_OUTPUT_ON_ERROR | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT;
         $out = json_encode($out, $jsonOptions);
-        echo '<script>console.table(' . $out . ');</script>';
+        print_r('<script>console.table(' . $out . ');</script>');
     }
 }
