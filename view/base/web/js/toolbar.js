@@ -17,9 +17,11 @@ define([
             state = !savedState || savedState === 'true';
         }
 
-        toolbarBlocksContainer.toggle(state);
-        toolbar.toggleClass('collapsed', !state);
         window.localStorage.setItem('mgt-developer-toolbar', state);
+        requestAnimationFrame(() => {
+            toolbarBlocksContainer.toggle(state);
+            toolbar.toggleClass('collapsed', !state);
+        });
     }
 
     function init() {
