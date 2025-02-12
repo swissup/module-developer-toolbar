@@ -23,13 +23,22 @@ if (PHP_SAPI != 'cli') {
     __DIR__
 );
 
+if (!function_exists('varDump')) {
+    function varDump(...$argc)
+    {
+        print_r('<pre><code>');
+        var_dump(...$argc);
+        print_r('</code></pre>');
+
+    }
+}
 if (!function_exists('dumpDie')) {
     function dumpDie(...$argc)
     {
         print_r('<pre><code>');
         var_dump(...$argc);
         print_r('</code></pre>');
-
+        die;
     }
 }
 
