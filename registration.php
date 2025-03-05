@@ -48,7 +48,7 @@ if (!function_exists('dumpDie')) {
         print_r('<pre><code>');
         var_dump(...$argc);
         print_r('</code></pre>');
-        die;
+        die;// @codingStandardsIgnoreLine
     }
 }
 
