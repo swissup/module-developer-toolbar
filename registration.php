@@ -23,6 +23,16 @@ if (PHP_SAPI != 'cli') {
     __DIR__
 );
 
+if (!function_exists('logger')) {
+    function logger($data)
+    {
+        (new \Monolog\Logger('logger'))
+                ->pushHandler((new \Monolog\Handler\StreamHandler(BP . '/var/log/logger.log'))
+                ->setFormatter(new \Monolog\Formatter\LineFormatter(null, null, true, true)))
+                ->debug(print_r($data, true));
+    }
+}
+
 if (!function_exists('varDump')) {
     function varDump(...$argc)
     {
