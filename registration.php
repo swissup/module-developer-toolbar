@@ -122,3 +122,17 @@ if (!function_exists('consoleTrace')) {
         print_r('<script>console.table(' . $out . ');</script>');
     }
 }
+
+if (!function_exists('debugBacktrace')) {
+    function debugBacktrace($limit = 20)
+    {
+        $trace = debug_backtrace();
+        foreach ($trace as &$call) {
+            unset($call['object']);
+            unset($call['args']);
+        }
+        echo '<pre>';
+        print_r($trace);
+        echo '</pre>';
+    }
+}
