@@ -131,8 +131,8 @@ if (!function_exists('debugBacktrace')) {
             unset($call['object']);
             unset($call['args']);
         }
-        echo '<pre>';
+        echo '<pre>';// @codingStandardsIgnoreLine
         print_r($trace);
-        echo '</pre>';
+        echo '</pre>';// @codingStandardsIgnoreLine
     }
 }
